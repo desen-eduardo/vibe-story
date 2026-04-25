@@ -7,8 +7,8 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    'Roboto-Bold': require('./assets/fonts/Roboto_Condensed-Bold.ttf'),
-    'Roboto-Regular': require('./assets/fonts/Roboto_Condensed-Regular.ttf'),
+    'Roboto-Bold': require('./assets/fonts/Roboto-Bold.ttf'),
+    'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
   });
 
   useEffect(() => {
