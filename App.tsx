@@ -1,18 +1,37 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { useFonts } from 'expo-font'; 
+import * as SplashScreen from 'expo-splash-screen'; 
+import {useEffect} from 'react';
+import { View,Text, StyleSheet } from "react-native";
 
-export default function App() {
+SplashScreen.preventAutoHideAsync();
+
+export default function RootLayout() {
+  const [loaded, error] = useFonts({
+    'Roboto-Bold': require('./assets/fonts/Roboto_Condensed-Bold.ttf'),
+    'Roboto-Regular': require('./assets/fonts/Roboto_Condensed-Regular.ttf'),
+  });
+
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
+
+  if (!loaded && !error) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Meu Primeiro app</Text>
+    <View style={style.container}>
+      <Text style={{fontFamily:'Roboto-Bold',fontSize:24}}>Meu App</Text>
     </View>
-  );
+  )
 }
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center'
+  }
+})
