@@ -2,7 +2,7 @@
 
 const style = StyleSheet.create({
     containerHeader:{
-        height:94,
+        height:84,
         backgroundColor:'#F59300',
         justifyContent:'center',
         alignItems:'center',
@@ -18,6 +18,12 @@ const style = StyleSheet.create({
         position:'absolute',
         left:10,
         top:45
+    },
+    title:{
+        fontFamily:'Roboto-Bold',
+        fontSize:24,
+        paddingVertical:10,
+        paddingHorizontal:10
     }
 });
 
