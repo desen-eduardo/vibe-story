@@ -1,7 +1,9 @@
 import { useFonts } from 'expo-font'; 
 import * as SplashScreen from 'expo-splash-screen'; 
 import {useEffect} from 'react';
-import { View,Text, StyleSheet } from "react-native";
+import { NavigationContainer } from '@react-navigation/native';
+
+import MyStack from './src/routes';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -22,16 +24,9 @@ export default function RootLayout() {
   }
 
   return (
-    <View style={style.container}>
-      <Text style={{fontFamily:'Roboto-Bold',fontSize:24}}>Meu App</Text>
-    </View>
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
   )
 }
 
-const style = StyleSheet.create({
-  container: {
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center'
-  }
-})
