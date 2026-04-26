@@ -1,29 +1,57 @@
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View, Alert } from 'react-native';
 import Header from '../../components/header';
 
 import style from './style';
+import { useRoute } from '@react-navigation/native';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+type Product = {
+    id: number,
+    title: string,
+    description: string,
+    category: string,
+    price: number,
+    images: string
+};
 
 export default function Details() {
+    const [product,setProduct] = useState<Product>();
+
+    const param = useRoute<any>();
+
+    async function getProduct(){
+        try { 
+            const res = await axios.get(`https://dummyjson.com/products/${param.params.id}`);
+            setProduct(res.data);
+        } catch (error) {
+            Alert.alert('Error', 'Houver erro de comunicação com api');
+        }
+    } 
+
+    useEffect(()=>{
+        getProduct();
+    });
+
     return(
         <View>
-            <Header title="Livros" iconBool={true}/>
+            <Header title={product?.category} iconBool={true}/>
                 <View style={style.container}>
                     <Image 
-                    style={{width:'100%',height:'40%'}}
-                    source={{uri:'https://img.freepik.com/vetores-gratis/vector-3d-frasco-de-perfume-realista-para-as-mulheres-recipiente-de-vidro-brilhante-com-liquido-rosa_33099-1226.jpg?semt=ais_hybrid&w=740&q=80'}}
+                    style={style.image}
+                    source={{uri:`${product?.images[0]}`}}
                     />
-                    <Text style={style.name}>Perfume Boticário</Text>
+                    <Text style={style.name}>{product?.title}</Text>
                     <View style={style.dualColunm}>
                         <View style={style.widthFont}>
                             <Text style={style.small}>R$</Text>
-                            <Text style={style.price}>184,99</Text>
+                            <Text style={style.price}>{product?.price}</Text>
                         </View>
                         <TouchableOpacity style={style.btn}>
                             <Text style={style.btnText}>Adicionar</Text>
                         </TouchableOpacity>
                     </View>
-                    <Text style={style.description}>any case, the structure of the criterion provides a glimpse at The Comprehension of Enhanced Modification
-(Sydney Stanfield in The Book of the Systems Approach) By some means, a number of brand new approaches has been tested during the the improvement of the effective time management. All in all, criteria of a number of the content testing method leads us to a clear understanding of an importance of the integrated collection of software engineering standards.  </Text>
+                    <Text style={style.description}>{product?.description}</Text>
                 </View>
                     
             

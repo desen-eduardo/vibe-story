@@ -10,6 +10,10 @@ const style = StyleSheet.create({
         fontFamily:'Roboto-Bold',
         paddingTop:20
     },
+    image:{
+        width: 'auto',
+        height: '60%'
+    },
     dualColunm:{
         flexDirection:'row',
         justifyContent:'space-between'

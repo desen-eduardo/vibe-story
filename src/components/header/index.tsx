@@ -5,14 +5,14 @@ import  FontAwesome from '@expo/vector-icons/FontAwesome';
 import style from './style';
 
 type Props = {
-    title:string,
+    title?:string,
     iconBool?:boolean
 }
 
 export default function Header(props: Props){
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
 
-    return(
+    return (
         <>
          <StatusBar
           hidden={true}
