@@ -2,6 +2,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen'; 
 import {useEffect} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { CartProvider } from './src/context/ CartContext';
 
 import MyStack from './src/routes';
 
@@ -24,9 +25,11 @@ export default function RootLayout() {
   }
 
   return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
+    <CartProvider>
+      <NavigationContainer>
+        <MyStack />
+      </NavigationContainer>
+    </CartProvider>
   )
 }
 
